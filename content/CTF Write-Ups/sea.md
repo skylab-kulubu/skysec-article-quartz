@@ -31,6 +31,7 @@ When we search `themes/bike/velik71` on Google, we see that a Content Management
 ![Screenshot_20240813_110021](https://github.com/user-attachments/assets/66971b1b-bfbf-41fb-a79f-ceb2471842a0)
 
 As you can see from the photos above, in a CVE vulnerability created for `WonderCMS`, the administrator of our website is phishing attacked and creates a vulnerability in the website.
+# Web Exploit
 
 ![Screenshot_20240813_110241](https://github.com/user-attachments/assets/207c0158-8cba-4936-bbef-4afe0b43f9dd)
 
@@ -55,6 +56,7 @@ In the `/var/www/sea` folder we see some files related to our website, if we tak
 
 ![Screenshot_20240813_111204](https://github.com/user-attachments/assets/9be41c85-2f1e-419c-abea-22e0b4a5e34f)
 
+# Privilege Esc.
 ![Screenshot_20240813_111255](https://github.com/user-attachments/assets/8d72fde5-4381-403a-949e-7d4a5de3b93e)
 
 ![Screenshot_20240813_111417](https://github.com/user-attachments/assets/165d4564-f612-46f0-a50f-2897283993c4)

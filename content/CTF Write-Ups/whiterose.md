@@ -70,6 +70,7 @@ OS and Service detection performed. Please report any incorrect results at [http
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*CDfYDgMFBL-VHkoqjwES_Q.png)
 
+# Web Enum
 ![](https://miro.medium.com/v2/resize:fit:700/1*B4ZpbEpeo5Ii-k1c6Hc1xg.png)
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*s9I_hFudNR0nfX9OF7-3XA.png)
@@ -78,6 +79,7 @@ OS and Service detection performed. Please report any incorrect results at [http
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*YKhdinZWBtBY1QtjmuDh-Q.png)
 
+## Getting Credidentals
 ![](https://miro.medium.com/v2/resize:fit:700/1*TPeV4ljIbE8zTgxDTjexsA.png)
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*pcZHpz1_I4AiYqoP8-puVw.png)
@@ -86,16 +88,19 @@ OS and Service detection performed. Please report any incorrect results at [http
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*yQiagqTofnSgYhBssOY2Tw.png)
 
+## Web Vuln
 ![](https://miro.medium.com/v2/resize:fit:700/1*sZtSRUlDmubYeur2VoFCDg.png)
 
 ![](https://miro.medium.com/v2/resize:fit:636/1*jgDmg3AUC93MmWD8yXcnqQ.png)
 
+# Web Exploit
 ![](https://miro.medium.com/v2/resize:fit:700/1*N6xz16-qlx_Ee29QNP0YDg.png)
 
 ![](https://miro.medium.com/v2/resize:fit:676/1*Zx0RyqC_fmrlQWrWQv3-Vg.png)
 
 ![](https://miro.medium.com/v2/resize:fit:675/1*dW8fMXOPJdrOMeR0t8n6wg.png)
 
+# Privilege Esc.
 ![](https://miro.medium.com/v2/resize:fit:700/1*cQLFx8wKsfpXYgT3ecxxcg.png)
 
 ![](https://miro.medium.com/v2/resize:fit:668/1*U-JiCbx_cFT-m3HHXCPC7Q.png)

@@ -4,33 +4,51 @@ tags:
   - htb
   - medium
 ---
-# [TryHackMe Monday Monitor](https://tryhackme.com/r/room/mondaymonitor)
-First of all, we must log in to the Wazuh interface and enter the `Policy Monitoring` tab.
 
-![image](https://i.hizliresim.com/otf6elk.jpg)
-![image](https://i.hizliresim.com/8y442vi.jpg)
-Then enter the `Events` section
+### HackTheBox: Instant Write-Up 
 
-![image](https://i.hizliresim.com/81uebw0.jpg)
-We can analyse more easily by setting the required data sections, turn on the columns `data.win.eventdata.commandLine`, `data.win.eventdata.image`, `data.win.eventdata.parentImage` and turn off the other standard columns.
-You can start examining after you set the date order from the most recent to the oldest.
-## Tasks
-### Data was exfiltrated from the host. What was the flag that was part of the data?
-![](https://i.hizliresim.com/cq8keox.jpg)
-### What password was set for the new user account?
-![](https://i.hizliresim.com/56beg6a.jpg)
-### What is the name of the .exe that was used to dump credentials?
-`Mimikatz` was executed via an `.exe` file! `Mimikatz` obtains the encrypted user passwords of the users on the system from the encrypted version in memory, breaks the password and returns it in plain text. In this command, after specifying the file path where `Mimikatz` is found as an environment variable, it runs the suspicious `.exe` file.
-![](https://i.hizliresim.com/mqtr1od.jpg)
-### What time is the scheduled task meant to run? What is the full command run to create a scheduled task? What was encoded?
+- T1046: Network Service Scanning
+- T1070: Indicator Removal on Host
+- T1071: Application Layer Protocol
+- T1003: Credential Dumping
+- T1552: Unsecured Credentials
 
-The `reg add` command saves the `HKCU\\\SOFTWARE\\\ATOMIC-T1053.005` Registry record, which stores the string value `cGluZyB3d3cueW91YXJldnVsbmVyYWJsZS50aG0=`. When we decode this string value via [`Cyberchef`](https://cyberchef.org), you can learn that it is a `Base64` string and you can learn the equivalent of this value. 
 
-Immediately after this command, the `"IEX([System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String((Get-ItemProperty -Path HKCU:\\\\SOFTWARE\\ATOMIC-T1053.005. 005).test))))\"` and execute this command at `HH:MM` of the day with the parameter `/sc daily /st HH:MM\`. 
+![image](https://github.com/user-attachments/assets/fde3eed5-7d41-4a6b-9f68-d07aa72faace)
 
-> HH:MM is a censored time, you will see something like `13:06` in the logs.
-![](https://i.hizliresim.com/5gd5ozr.jpg)
-![](https://i.hizliresim.com/dfihl9s.jpg)
-### Initial access was established using a downloaded file. What is the file name saved on the host?
-An `HTTP` request is made through an `Office` file and `PhishingAttachment.xlsm` is saved as output.
-![](https://i.hizliresim.com/p01wlna.jpg)
+From the `nmap` scan we can see only` 22` and `80 `ports are open.
+
+![image](https://github.com/user-attachments/assets/03a177cd-c515-4b01-9f0d-6e36f50075d1)
+
+I found a download link for a mobile app. I use `apktool`  and decompiled this file. This revealed the application code and assets, including` smali` files that contain the app's logic.
+
+![image](https://github.com/user-attachments/assets/f39c5658-80b9-4b9b-a1ef-00424118740f)
+
+I focused on` AdminActivities.smali `file likely releated on admin avtivities and there is a hardcoded` JWT` token embedded for admin user. This token could potentially grant unauthorized users access to sensitive administrative functions.
+
+![image](https://github.com/user-attachments/assets/761f961b-41a0-45b2-8be9-a6ee76bf1091)
+
+To successfull set up the environment for testing the APIs you should add the subdomain` swagger-ui.instant.htb` to the `/etc/hosts` file. 
+
+`curl -X GET "http://swagger-ui.instant.htb/api/v1/admin/read/log?log_file_name=..%2F.ssh%2Fid_rsa" -H  "accept: application/json" -H  "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwid2FsSWQiOiJmMGVjYTZlNS03ODNhLTQ3MWQtOWQ4Zi0wMTYyY2JjOTAwZGIiLCJleHAiOjMzMjU5MzAzNjU2fQ.v0qyyAqDSgyoNFHU7MgRQcDA0Bw99_8AEXKGtWZ6rYA"`
+
+ Using this command we can successfully extracted the private ssh key.
+
+![image](https://github.com/user-attachments/assets/43aa59c7-0a47-4538-968b-75119333feac)
+
+Setting the correct permissions and connect ssh with this key.
+
+![image](https://github.com/user-attachments/assets/19fac0dd-9870-4244-89fd-b7259217733e)
+
+![image](https://github.com/user-attachments/assets/2266b5b3-4ab6-4a2d-9ac7-286b9c738df2)
+
+I found here a `sql database`, inside usernames and hashed passwords. 
+
+![image](https://github.com/user-attachments/assets/489792b3-37b5-41eb-a63e-6cd2b03f4ad3)
+
+Then I found a .`dat` file. 
+
+![image](https://github.com/user-attachments/assets/c6cfc226-d102-4549-9173-c35da06ed0d0)
+
+We can crack this with `solar putty decrypt tool`. https://github.com/VoidSec/SolarPuttyDecrypt
+And finally switch the user with` su root `command and` cat` the flag.

@@ -6,7 +6,10 @@ tags:
 aliases: index
 
 ---
- 
+<div style="text-align: center;">
+<img src="/static/index/skylab.png"/>
+</div>
+
 This repo contains academic papers and projects SKYSEC is working on.
 # Social
 - [SKYLAB Web](https://yildizskylab.com/)

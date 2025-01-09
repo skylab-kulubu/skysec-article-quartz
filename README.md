@@ -40,5 +40,5 @@ Bütün bu özellikleri [Markdown](https://www.markdownguide.org/) formatında k
 [Obsidian](https://obsidian.md/) bir not tutma uygulaması, aynı zamanda [Quartz](https://quartz.jzhao.xyz/) ile uyumlu çalışmakta. Repositorynin klasörünü [Obsidian](https://obsidian.md/) ile açarsan, vault olarak, yazdığın Markdown formatındaki yazılar websitesinde nasıl görünecekse sana da öyle gözükecek.
 
 # Medium Yazılarını Aktarma
-![Image](https://i.hizliresim.com/lnkk9y4.gif)
-![Image](https://i.hizliresim.com/7lv0f9l.gif)
+![Image](/medium-to-md.gif)
+![Image](/medium-to-md2.gif)

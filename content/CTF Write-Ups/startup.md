@@ -1,5 +1,10 @@
-# TryHackMe| Startup Write-Up
 
+---
+title: Startup
+tags:
+  - tryhackme 
+  - easy
+---
 Deploying the machine and my target ip is  _10.10.102.128_
 
 First,scanning the machine with  **nmap**  and I found  _21,22_  and  _80_  ports are open.

@@ -1,3 +1,9 @@
+---
+title: Gotta Catch’em All!
+tags:
+  - thm
+  - easy
+---
 # TryHackMe Gotta Catch’em All! Write-Up
 
 

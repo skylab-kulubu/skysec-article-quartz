@@ -201,7 +201,7 @@ production:
 </config>
 ```
 I have used Pentest Monkey's PHP reverse shell.
-![](/static/htb/healHtbActivatePlugin.png)
+![](/static/heal/healHtbActivatePlugin.png)
 # Ron
 ```bash
 www-data@heal:~$ find . -type f -iname "config.*"

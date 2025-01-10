@@ -5,7 +5,7 @@ tags:
   - easy
 ---
 
-#### Author: **lomar**
+#### Author: **e-ukiyo**
 
 ---
 

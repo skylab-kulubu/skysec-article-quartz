@@ -7,6 +7,11 @@ draft: false
 aliases:
 ---
 
+
+#### Author: **lomar**
+
+---
+
 ## Task 2 - The Message
 ![](https://i.hizliresim.com/bqr04ga.jpg)
 ### What is the full path of the text file containing the "message"?

@@ -4,6 +4,11 @@ tags:
   - htb
   - easy
 ---
+
+#### Author: **lomar**
+
+---
+
 #  **HackTheBox: Chemistry Write-Up**
 
 - T1046

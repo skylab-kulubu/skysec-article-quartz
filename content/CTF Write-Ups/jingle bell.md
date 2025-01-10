@@ -6,6 +6,11 @@ tags:
   - soc
   - easy
 ---
+
+#### Author: **lomar**
+
+---
+
 # Sherlock Scenario
 
 _Torrin is suspected to be an insider threat in Forela. He is believed to have leaked some data and removed certain applications from their workstation. They managed to bypass some controls and installed unauthorised software. Despite the forensic team’s efforts, no evidence of data leakage was found. As a senior incident responder, you have been tasked with investigating the incident to determine the conversation between the two parties involved._

@@ -5,6 +5,11 @@ tags:
   - easy
   - soc
 ---
+
+#### Author: **lomar**
+
+---
+
 _Help us to analyze specifically targeting a backdoor known as UPSTYLE and its relation to CVEs (Common Vulnerabilities and Exposures) that affect Palo Alto Networks’ products._
 
 ## Solutions

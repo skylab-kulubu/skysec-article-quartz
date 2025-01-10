@@ -6,6 +6,11 @@ tags:
   - mrrobot
 ---
 
+
+#### Author: **lomar**
+
+---
+
 # _Welcome to Whiterose_
 
 _This challenge is based on the Mr. Robot episode “409 Conflict”. Contains spoilers!_

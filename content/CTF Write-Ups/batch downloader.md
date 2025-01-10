@@ -6,6 +6,10 @@ tags:
   - soc
 ---
 
+#### Author: **lomar**
+
+---
+
 _A malicious batch file has been discovered that downloads and executes files associated with the Laplas Clipper malware. Analyze this batch file to understand its behavior and help us investigate its activities._
 
 ![](https://miro.medium.com/v2/resize:fit:1000/1*DFCRgbX1FfMS2HyTTA3zgQ.png)

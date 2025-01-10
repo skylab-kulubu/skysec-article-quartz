@@ -4,6 +4,11 @@ tags:
   - htb
   - easy
 ---
+
+#### Author: **lomar**
+
+---
+
 # Nmap (UDP Scan Required)
 ```plaintext
 # Nmap 7.94SVN scan initiated Sat Jan  4 06:13:00 2025 as: /usr/lib/nmap/nmap --privileged -sT -A -v -sU -oA nmap 10.10.11.48

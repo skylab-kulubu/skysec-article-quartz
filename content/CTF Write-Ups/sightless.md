@@ -5,6 +5,11 @@ tags:
   - easy
 ---
 
+
+#### Author: **lomar**
+
+---
+
 If you scan with gobuster vhost, you will not get any results, but if you navigate through the website, you will see a button that wants to redirect you directly to a subdomain.
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*t2zzEeMYN8raBYmFbk3ZPw.png)

@@ -4,6 +4,11 @@ tags:
   - thm
   - soc
 ---
+
+#### Author: **lomar**
+
+---
+
 # [TryHackMe Monday Monitor](https://tryhackme.com/r/room/mondaymonitor)
 First of all, we must log in to the Wazuh interface and enter the `Policy Monitoring` tab.
 

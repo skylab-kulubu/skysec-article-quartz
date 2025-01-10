@@ -4,6 +4,11 @@ tags:
   - htb
   - medium
 ---
+
+#### Author: **lomar**
+
+---
+
 # Nmap
 ```plaintext
 # Nmap 7.94SVN scan initiated Sat Jan  4 02:41:23 2025 as: /usr/lib/nmap/nmap -sT -A -v -oA nmap heal.htb

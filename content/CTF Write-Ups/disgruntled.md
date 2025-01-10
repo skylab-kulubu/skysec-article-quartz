@@ -4,6 +4,11 @@ tags:
   - thm
   - premium
 ---
+
+#### Author: **lomar**
+
+---
+
 # [Disgruntled](https://tryhackme.com/r/room/disgruntled)
 
 

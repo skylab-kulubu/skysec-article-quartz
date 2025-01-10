@@ -6,6 +6,11 @@ tags:
   - retired
 ---
 
+
+#### Author: **lomar**
+
+---
+
 <div align='center'>
   
 # [PermX](https://app.hackthebox.com/machines/PermX)

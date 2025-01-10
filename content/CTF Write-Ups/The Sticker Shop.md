@@ -5,6 +5,10 @@ tags:
   - easy
 ---
 
+#### Author: **Xera**
+
+---
+
 ![image](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*6G6WWpl_fDJbtGklkH-osQ.png)
 
 This is a writeup for The Sticker Shop room.

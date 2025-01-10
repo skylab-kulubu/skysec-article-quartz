@@ -15,7 +15,7 @@ This is a writeup for The Sticker Shop room.
 
 My target IP: 10.10.181.215
 
-— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — -
+---
 
 The goal of this challenge is to exploit the website and read the flag located at:
 
@@ -23,7 +23,7 @@ http://10.10.181.215:8080/flag.txt
 
 ![image](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*bfF-Gp-SrOfkQhCZDRD2ZQ.jpeg)
 
-— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — -
+---
 
 In the Feedback page, we will implement Blind XSS.
 

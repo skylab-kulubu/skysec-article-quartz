@@ -4,6 +4,11 @@ tags:
   - thm
   - easy
 ---
+
+#### Author: **e-ukiyo**
+
+---
+
 # TryHackMe Gotta Catch’em All! Write-Up
 
 

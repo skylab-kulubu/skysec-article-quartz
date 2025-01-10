@@ -5,6 +5,11 @@ tags:
 aliases:
   - upgrade_shell
 ---
+
+#### Author: **lomar**
+
+---
+
 # # Method 1: Python pty module
 ```bash
 python -c 'import pty; pty.spawn("/bin/bash")'

@@ -5,6 +5,11 @@ tags:
 aliases:
   - port_forward
 ---
+
+#### Author: **lomar**
+
+---
+
 # Port Forwarding
 When local services that listen to the IPv4 address `127.0.0.1` are running on the target machine, we may need to access these services from our host machine, in such cases we can access this service by forwarding the port number on which the local service is running to our host machine. We can basically do port forwarding with 3 methods.
 # Method 1: SSH

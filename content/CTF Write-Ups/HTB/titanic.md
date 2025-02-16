@@ -7,6 +7,7 @@ date: 2025-02-15
 ---
 
 #### Author: **lomar**
+![lomar](https://www.hackthebox.com/badge/image/1506415)
 
 ---
 # Nmap

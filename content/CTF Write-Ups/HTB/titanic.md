@@ -65,6 +65,11 @@ echo "10.10.11.55 dev.titanic.htb" | sudo tee -a /etc/hosts
 ```
 
 ## titanic.htb
+
+We encounter an ordinary website, there is one function that catches the eye. A form triggered by the “Book Now” button opens. When we open the form, it asks us for some information.
+
+After entering and submitting the information, if we examine it with Burpsuite, we don't actually get an ordinary JSON return from the server, we request a JSON file from the server and download it.
+
 ![[/static/titanic/20250215232402.png]]
 
 ![[/static/titanic/20250215232412.png]]
@@ -73,21 +78,36 @@ echo "10.10.11.55 dev.titanic.htb" | sudo tee -a /etc/hosts
 
 ![[/static/titanic/20250215232451.png]]
 
+If we replace the parameter with the name of the file to be downloaded with an entry compatible with the Linux file system that triggers the Local File Inclusion vulnerability, we can read the file.
+
 ![[/static/titanic/20250215232508.png]]
 ![[/static/titanic/20250215232534.png]]
 
 ## dev.titanic.htb
+
+Gitea software is running at this address, Gitea has the same functionality as Github. In the Explore tab we see the shared repositories of the running Gitea instance. These include the web application running at `titanic.htb` and the repositories containing `docker compose` configuration files.
+
+If you carefully examine the `developer/docker-config` repository, you can access the configuration file for Gitea. With this file, when you run the container in your locale and examine the inside, you will find the init file in the `data/gitea/` folder. This file contains information about where the database is stored. 
+
 ![[/static/titanic/20250215232227.png]]
 
 ![[/static/titanic/20250215232256.png]]
 
 ![[/static/titanic/20250215232633.png]]
 
-![[/static/titanic/20250215232731.png]]
+Using this information we can access the database in the path `data/gitea/gitea/gitea.db` in the `/home/developer/gitea` volume. With the “Book Now” function we will use the LFI vulnerability to access the database. We can do this by specifying `/home/developer/gitea/data/gitea/gitea/gitea.db` as the file we want to read. 
 
+![[/static/titanic/20250215232731.png]]
+If we do this with `curl` we can download the database in binary.
 ```bash
 curl 'http://titanic.htb/download?ticket=/home/developer/gitea/data/gitea/gitea.db' -o db.db
 ```
+
+```bash
+sqlitebrowser db.db
+```
+
+In the `user` table, you can access the password and salt information of the users. For information on how to crack user passwords stored in the Gitea database, please read this article https://thecybersecguru.com/ctf-walkthroughs/mastering-compiled-beginners-guide-from-hackthebox/.
 
 ![[/static/titanic/20250215232847.png]]
 

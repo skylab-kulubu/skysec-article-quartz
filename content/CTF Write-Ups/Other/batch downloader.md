@@ -8,6 +8,7 @@ date:
 ---
 
 #### Author: **lomar**
+![lomar](https://www.hackthebox.com/badge/image/1506415)
 
 ---
 

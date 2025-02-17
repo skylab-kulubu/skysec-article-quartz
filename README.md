@@ -1,5 +1,7 @@
 # [SKYSEC Articles | Quartz](https://skysec.yildizskylab.com/)
 
+## Platform
+Yazılanları buradan oku: [skysec.yildizskylab.com](https://skysec.yildizskylab.com/)
 
 # Nasıl İçerik Hazırlarım?
 ## Repositoryi Klonla

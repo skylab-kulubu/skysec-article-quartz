@@ -1,4 +1,8 @@
 #!/bin/bash
+
+IMAGE_NAME=${IMAGE_NAME:-"skysec-article"}
+AUTHOR_NAME=${AUTHOR_NAME:-"lomarkomar"}
+VERSION=${VERSION:-"latest"}
 docker image prune -f
-docker run --rm -itp 8080:8080 $(docker build -q .)
-echo "The Docker instance is running on port 8080"
+docker build -t $AUTHOR_NAME/$IMAGE_NAME:$VERSION .
+docker run --rm -itp 8080:8080 $AUTHOR_NAME/$IMAGE_NAME:$VERSION

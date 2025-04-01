@@ -1,3 +1,10 @@
+---
+title: Kendi CTF'ini Hostla!
+tags:
+  - guide
+date: 2025-04-01
+---
+
 # Kendi CTF’ini Hostla!
 # Gereksinimler
 

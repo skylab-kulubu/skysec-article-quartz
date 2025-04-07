@@ -4,8 +4,8 @@ tags:
   - guide
 date: 2025-04-01
 ---
+# Kendi CTF’ini Hostla
 
-# Kendi CTF’ini Hostla!
 # Gereksinimler
 
 Burada değineceğim gereksinimler elbette olmazsa olmaz değil ve başka yöntemlerle halledilebilir fakat CTF yarışmalarının kısa süreli olduğunu düşünürsek bu yöntemleri kullanmamız bizim yararımıza olacaktır.
@@ -65,6 +65,7 @@ apt install wireguard -y
 ```
 
 ardından aşağıdaki komutları sırasıyla çalıştırın:
+
 ```bash
 mkdir ~/wg-ui  
 cd ~/wg-ui  
@@ -326,3 +327,7 @@ ufw allow ssh
 ufw allow from 10.0.0.0/16  
 ufw allow from 10.10.0.0/16
 ```
+
+## Network Şeması
+
+![network digram](/static/misc/ctf_hostla/ctf_hostla.png)

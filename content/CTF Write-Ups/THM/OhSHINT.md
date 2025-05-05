@@ -4,6 +4,7 @@ tags:
   - thm
   - easy
 ---
+#### Author: AMD
 
 ![ohsint](https://github.com/user-attachments/assets/a24ed1c6-bedd-446c-b32c-97f9857ca1f9)
 

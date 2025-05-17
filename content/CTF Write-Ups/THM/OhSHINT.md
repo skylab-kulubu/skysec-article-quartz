@@ -45,7 +45,8 @@ Find the location and SSID by using the bssid from the post with https://wigle.n
 
 ![github](https://github.com/user-attachments/assets/69279568-ccf4-4278-ae74-41f9cf8b007a)
 
-Found the personal email.  <br/>
+Found the personal email.
+
 Found the website.
 
 -----------------------------------------------------------------------------------
